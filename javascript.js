@@ -35,14 +35,35 @@ function playRound(playerSelection, computerSelection){
     else {
         if ((playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "paper" && computerSelection === "rock") || (playerSelection === "scissors" && computerSelection === "paper")) {
             console.log("You win! " + playerSelection + " beats " + computerSelection);
+            
+            return playerRound++;
         }
 
         else {
             console.log("You lose! " + computerSelection + " beats " + playerSelection);
+
+            return computerRound++;
         }
     }
 }
 
-let playerSelection = prompt("Rock, paper or scissors?");
+let playerRound = 0;
 
-playRound(playerSelection, getComputerChoice());
+let computerRound = 0;
+
+//Function to play 5 rounds
+function playGame() {
+    for (let i = 0; i < 5; i++) {
+        //request input from player every round
+        let playerSelection = prompt("Rock, paper or scissors?");
+
+        playRound(playerSelection, getComputerChoice());
+
+        //counting total rounds
+        console.log("Player: " + playerRound + ". Computer: " + computerRound);
+    }
+    //at the end of the game, message to say who was the winner and the final results
+    (playerRound > computerRound) ? console.log("Congratulations, you won! The final score is: Player " + playerRound + " to Computer " + computerRound + ".") : console.log("Sorry, computer won. Better luck next time!The final score is: Player " + playerRound + " to Computer " + computerRound + ".");
+}
+
+playGame();
